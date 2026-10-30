@@ -1,0 +1,94 @@
+Data quality checks
+-------------------
+                              check  days_failing  passed
+                  No missing values             0    True
+                 No duplicate dates             0    True
+              No gaps between dates             0    True
+                No negative numbers             0    True
+               Totals never go down             0    True
+Active = cases - deaths - recovered             0    True
+  New cases = change in total cases             0    True
+New deaths = change in total deaths             0    True
+
+Phase summary
+-------------
+                     start        end  days  cases_added  mean_daily_cases  median_daily_cases  max_daily_cases  deaths_added  mean_daily_deaths  max_daily_deaths
+phase                                                                                                                                                             
+Before lockdown 2020-03-05 2020-03-26    22          928              42.2                13.5              218             0                0.0                 0
+Level 5         2020-03-27 2020-04-30    35         4719             134.8                99.0              354           103                2.9                14
+Level 4         2020-05-01 2020-05-31    31        27036             872.1               767.0             1837           580               18.7                52
+Level 3         2020-06-01 2020-06-12    12        29244            2437.0              2484.5             3359           671               55.9                82
+
+Growth of total cases by phase
+------------------------------
+                 days  daily_growth_pct  doubling_days  doubling_low  doubling_high  r_squared
+phase                                                                                         
+Before lockdown    22             38.31           2.14          2.01           2.28       0.98
+Level 5            35              4.79          14.82         14.37          15.29       0.99
+Level 4            31              5.85          12.19         12.04          12.35       1.00
+Level 3            12              5.56          12.82         12.22          13.47       1.00
+
+Segmented regression on 7-day average of new cases
+--------------------------------------------------
+                 daily_growth_pct  growth_low_pct  growth_high_pct  doubling_days  change_vs_previous_p
+phase                                                                                                  
+Before lockdown            22.748          16.309           29.543          3.382                   NaN
+Level 5                     3.126           1.090            5.203         22.518                 0.000
+Level 4                     6.909           5.767            8.064         10.375                 0.010
+Level 3                     3.884           1.728            6.085         18.191                 0.061
+
+Weekday reporting ratio
+-----------------------
+            mean  median    std  count    sem
+weekday                                      
+Monday     0.920   0.997  0.201     10  0.064
+Tuesday    0.851   0.817  0.205     10  0.065
+Wednesday  0.965   0.897  0.318      9  0.106
+Thursday   1.090   1.016  0.293      9  0.098
+Friday     1.083   1.119  0.185      9  0.062
+Saturday   1.030   1.040  0.385     10  0.122
+Sunday     1.077   1.045  0.253     10  0.080
+Kruskal-Wallis H = 7.86, p = 0.249
+
+Case fatality on the last day
+-----------------------------
+                                          deaths  denominator  rate_pct  low_pct  high_pct
+measure                                                                                   
+Naive (deaths / cases)                      1354        61927      2.19     2.07      2.30
+Resolved (deaths / (deaths + recovered))    1354        36362      3.72     3.53      3.92
+
+Fatality against cases from earlier weeks
+-----------------------------------------
+          rate_pct
+lag_days          
+0             2.41
+7             3.14
+14            4.89
+21            6.76
+
+Cases vs deaths
+---------------
+Raw Pearson r = 0.910
+Detrended correlations, with the range expected by chance at each lag:
+lag_days         0       1       2       3       4       5       6       7       8       9       10      11      12      13      14      15      16      17      18      19      20      21
+correlation  -0.173  -0.013   0.224  -0.122  -0.062  -0.008   0.040  -0.061   0.090  -0.075  -0.029   0.314  -0.234  -0.180   0.101  -0.012   0.015   0.465  -0.222  -0.286   0.132   0.005
+pairs        58.000  57.000  56.000  55.000  54.000  53.000  52.000  51.000  50.000  49.000  48.000  47.000  46.000  45.000  44.000  43.000  42.000  41.000  40.000  39.000  38.000  37.000
+noise_band    0.257   0.260   0.262   0.264   0.267   0.269   0.272   0.274   0.277   0.280   0.283   0.286   0.289   0.292   0.295   0.299   0.302   0.306   0.310   0.314   0.318   0.322
+
+Trend carried forward 14 days
+-----------------------------
+      date  projected      low     high
+2020-06-13    65904.0  64005.0  67859.0
+2020-06-14    69576.0  67547.0  71666.0
+2020-06-15    73453.0  71283.0  75689.0
+2020-06-16    77546.0  75224.0  79939.0
+2020-06-17    81867.0  79381.0  84431.0
+2020-06-18    86429.0  83766.0  89176.0
+2020-06-19    91245.0  88391.0  94191.0
+2020-06-20    96329.0  93269.0  99489.0
+2020-06-21   101697.0  98415.0 105088.0
+2020-06-22   107363.0 103842.0 111004.0
+2020-06-23   113346.0 109567.0 117256.0
+2020-06-24   119662.0 115605.0 123861.0
+2020-06-25   126330.0 121974.0 130841.0
+2020-06-26   133369.0 128692.0 138216.0
